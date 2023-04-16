@@ -110,5 +110,9 @@ public class UserServiceImp implements UserService{
 
         userRepo.save(u);
     }
+    public List<User>  findAllByOrderBOrderByRolesDesc()
+    {
+        return userRepo.findAllByOrderByRolesDesc();
+    }
 
 }

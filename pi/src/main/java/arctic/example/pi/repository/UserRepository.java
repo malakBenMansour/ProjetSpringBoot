@@ -25,4 +25,9 @@ public interface UserRepository extends CrudRepository<User,Long> {
 
     @Query("SELECT COUNT(e.stateuser) FROM User e WHERE e.stateuser=false")
     int getNbDisabled();
+
+
+    List<User> findAllByOrderByRolesDesc();
+
+   
 }

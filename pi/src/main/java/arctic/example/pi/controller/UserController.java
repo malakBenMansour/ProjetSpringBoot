@@ -81,4 +81,9 @@ public class UserController {
                         @PathVariable("cpassword") String confirmPassword) {
         userService.updatePassword(emailUser, newPassword, confirmPassword);
     }
+    @GetMapping("/tri")
+    public List<User> findAll()
+    {
+        return userService.findAllByOrderBOrderByRolesDesc();
+    }
 }

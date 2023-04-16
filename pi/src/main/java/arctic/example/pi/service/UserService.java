@@ -22,4 +22,5 @@ public interface UserService {
     List<User> retrieveUserByState(boolean stateUser);
     List<User> retrieveUserByAddress(String adressUser);
     void updatePassword(String emailUser, String newPassword, String confirmPassword);
+    List<User> findAllByOrderBOrderByRolesDesc();
 }
