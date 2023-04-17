@@ -112,4 +112,11 @@ public class UserController {
     public void forgotpass(@PathVariable("emailUser") String emailUser) {
         userService.forgotpass(emailUser);
     }
+
+    // add Organisation to User
+
+    @PutMapping("/addorganisation/{username}/{id}")
+    public User addOrganisationToUser(@PathVariable(value="username") String username,@PathVariable(value="id") Long id){
+     return userService.addOrganisationToUser(username,id);
+    }
 }
