@@ -2,6 +2,7 @@ package com.example.PiCloud.services;
 
 
 import com.example.PiCloud.entities.Reclamation;
+import com.example.PiCloud.entities.Status;
 import com.example.PiCloud.entities.TypeReclamation;
 import com.example.PiCloud.repository.TypeRecRepository;
 import lombok.AllArgsConstructor;
@@ -41,10 +42,14 @@ public class TypeRecService implements ITypeRec{
     public TypeReclamation retrieveTypeReclamation(Long  idType) {
         return typeRecRepository.findById(idType).orElse(null);
     }
-//    @Override
-//    public Set<TypeReclamation> getReclamationByDateCreation(Date DateCreation) {
-//        return typeRecRepository.findByDateCreation(DateCreation);
-//    }
+
+    public Set<TypeReclamation> findTypeByDateCreation(Date DateCreation) {
+        return typeRecRepository.findTypeByDateCreation(DateCreation);
+    }
+
+    public int countAllByNom(String nom) {
+        return typeRecRepository.countAllByNom(nom);
+    }
 //    public List<TypeReclamation> findTypeReclamationByDateCreationBetween(Date date1, Date date2) {
 //        return typeRecRepository.findTypeReclamationByDateCreationBetween( date1,date2);
 //    }

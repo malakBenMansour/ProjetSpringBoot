@@ -1,6 +1,7 @@
 package com.example.PiCloud.repository;
 
 import com.example.PiCloud.entities.Reclamation;
+import com.example.PiCloud.entities.Status;
 import com.example.PiCloud.entities.TypeReclamation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,8 @@ import java.util.Set;
 public interface TypeRecRepository extends JpaRepository<TypeReclamation , Long> {
 
 //    List<TypeReclamation> findTypeReclamationByDateCreationBetween(Date date1, Date date2);
-//    Set<TypeReclamation> findByDateCreation(Date DateCreation);
+Set<TypeReclamation> findTypeByDateCreation(Date DateCreation);
+    int countAllByNom(String nom);
 
 
 }

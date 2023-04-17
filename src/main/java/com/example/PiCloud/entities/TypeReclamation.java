@@ -25,7 +25,7 @@ public class TypeReclamation implements Serializable {
     private String description;
     @Temporal(TemporalType.DATE)
 //    private LocalDateTime dateCreation;
-    @JsonFormat(pattern="yyyy-MMM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateCreation;
 
 
