@@ -1,12 +1,18 @@
 package arctic.example.pi.controller;
 
+import arctic.example.pi.DTO.CountType;
 import arctic.example.pi.entity.ERole;
 import arctic.example.pi.entity.User;
 import arctic.example.pi.repository.UserRepository;
 import arctic.example.pi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 @RestController
@@ -85,5 +91,25 @@ public class UserController {
     public List<User> findAll()
     {
         return userService.findAllByOrderBOrderByRolesDesc();
+    }
+    @GetMapping("/stat")
+    public List<CountType> statistque()
+    {
+        return userService.statistque();
+    }
+
+    @GetMapping("/exportpdf")
+    public ResponseEntity<InputStreamResource> exportPdf() {
+        List<User> users = (List<User>) userService.getUsers();
+        ByteArrayInputStream bais = userService.userExport(users);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline;filename=user.pdf");
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(new InputStreamResource(bais));
+    }
+
+    // forget password API Mail
+    @GetMapping("/sendme/{emailUser}")
+    public void forgotpass(@PathVariable("emailUser") String emailUser) {
+        userService.forgotpass(emailUser);
     }
 }

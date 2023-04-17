@@ -1,5 +1,6 @@
 package arctic.example.pi.repository;
 
+import arctic.example.pi.DTO.CountType;
 import arctic.example.pi.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -29,5 +30,7 @@ public interface UserRepository extends CrudRepository<User,Long> {
 
     List<User> findAllByOrderByRolesDesc();
 
-   
+
+    @Query(value="SELECT new arctic.example.pi.DTO.CountType(count(*),stateuser) from User  group by stateuser")
+     List<CountType> statistque();
 }
