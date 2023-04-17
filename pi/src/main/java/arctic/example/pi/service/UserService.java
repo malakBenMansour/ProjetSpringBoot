@@ -1,8 +1,10 @@
 package arctic.example.pi.service;
 
+import arctic.example.pi.DTO.CountType;
 import arctic.example.pi.entity.ERole;
 import arctic.example.pi.entity.User;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 public interface UserService {
@@ -23,4 +25,7 @@ public interface UserService {
     List<User> retrieveUserByAddress(String adressUser);
     void updatePassword(String emailUser, String newPassword, String confirmPassword);
     List<User> findAllByOrderBOrderByRolesDesc();
+    List<CountType> statistque();
+    public  ByteArrayInputStream userExport(List<User> users);
+    public void forgotpass(String emailuser);
 }
