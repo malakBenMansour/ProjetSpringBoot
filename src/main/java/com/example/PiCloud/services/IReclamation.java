@@ -24,5 +24,6 @@ public interface IReclamation {
     List<Reclamation> trierReclamationsParPriorite();
     int countAllByStatus(Status status);
     List<Reclamation> getAllOrderedByNomASC();
+    List<Reclamation> findByStatusOrderByDateCreationDesc(Status status);
 
 }

@@ -83,4 +83,8 @@ public class ReclamationService implements IReclamation {
         return reclamationRepository.getAllOrderedByNomASC();
     }
 
+    public List<Reclamation> findByStatusOrderByDateCreationDesc(Status status) {
+        return reclamationRepository.findByStatusOrderByDateCreationDesc(status);
+    }
+
 }

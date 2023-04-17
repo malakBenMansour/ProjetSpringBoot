@@ -16,9 +16,16 @@ public interface ReclamationRepository extends JpaRepository<Reclamation , Long 
     Set<Reclamation> findByNomRec(String nomRec);
     Set<Reclamation> findByDateCreation(Date DateCreation);
     List<Reclamation> findByDateCreationBetween(Date date1, Date date2);
-int countAllByStatus(Status status);
+
+
+    @Query("select r from Reclamation r where r.status=:status order by r.dateCreation ASC ")
+    List<Reclamation> findByStatusOrderByDateCreationDesc(Status status);
+
+    int countAllByStatus(Status status);
     @Query("select r from Reclamation r order by r.nomRec ASC ")
 List<Reclamation> getAllOrderedByNomASC();
+
+
 
 }
 

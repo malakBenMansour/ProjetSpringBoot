@@ -76,5 +76,10 @@ public class ReclamationController {
     int countAllByStatus(@PathVariable Status status){
         return iRec.countAllByStatus(status);
     }
+
+    @GetMapping("/AfficherbyStatusOrderbyDateCreation/{status}")
+    List<Reclamation> findByStatusOrderByDateCreationDesc(@PathVariable Status status) {
+        return iRec.findByStatusOrderByDateCreationDesc(status);
+    }
 }
 
