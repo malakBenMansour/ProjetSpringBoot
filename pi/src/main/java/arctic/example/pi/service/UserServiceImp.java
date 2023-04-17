@@ -2,8 +2,10 @@ package arctic.example.pi.service;
 
 import arctic.example.pi.DTO.CountType;
 import arctic.example.pi.entity.ERole;
+import arctic.example.pi.entity.Organisation;
 import arctic.example.pi.entity.Role;
 import arctic.example.pi.entity.User;
+import arctic.example.pi.repository.OrganisationRepository;
 import arctic.example.pi.repository.RoleRepository;
 import arctic.example.pi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +36,8 @@ public class UserServiceImp implements UserService{
     UserRepository userRepo;
 @Autowired
     RoleRepository roleRepo;
+@Autowired
+    OrganisationRepository organisationRepository;
 
     @Override
     public List<User> getUsers() {
@@ -71,6 +75,16 @@ public class UserServiceImp implements UserService{
             Role role = roleRepo.findByName(roleName);
             user.getRoles().add(role);
             return userRepo.save((user));
+
+    }
+    @Override
+    public User addOrganisationToUser(String username, Long id) {
+
+
+        User user = userRepo.findByUsername(username);
+        Organisation organisation = organisationRepository.findById(id).get();
+        user.setOrganisation(organisation);
+        return userRepo.save(user);
 
     }
   // recherche

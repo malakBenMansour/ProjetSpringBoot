@@ -28,4 +28,5 @@ public interface UserService {
     List<CountType> statistque();
     public  ByteArrayInputStream userExport(List<User> users);
     public void forgotpass(String emailuser);
+    User addOrganisationToUser(String username, Long id);
 }
