@@ -70,8 +70,8 @@ public class UserController {
 
     @GetMapping("/userbyemail")
     @ResponseBody
-    public List<User> retrieveuserbyemail(@RequestParam String email) {
-        return (List<User>) userService.getUserByMail(email);
+    public User retrieveuserbyemail(@RequestParam String email) {
+        return  userService.getUserByMail(email);
     }
 
     // Activation User

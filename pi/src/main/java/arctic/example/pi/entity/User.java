@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -58,6 +59,8 @@ public class User implements Serializable {
 
     private String tel;
 
+    //private boolean connected;
+
     // association
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -67,5 +70,18 @@ public class User implements Serializable {
     @ManyToOne
     @JsonIgnore
     Organisation organisation;
+
+    public User(@Size(max = 80) String username, @Size(max = 50) @Email String email, @Size(max = 120) String password,
+                String address, @Size(max = 50) String tel, @Size(max = 50) String nom, @Size(max = 50) String prenom, Date birth) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.tel = tel;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.datenaissance=birth;
+
+    }
 
 }

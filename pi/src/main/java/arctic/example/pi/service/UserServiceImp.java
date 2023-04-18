@@ -254,4 +254,8 @@ public void forgotpass(String emailuser) {
 
 }
 
+    public boolean ifEmailExist(String email) {
+        return userRepo.existsByEmail(email);
+    }
+
 }
