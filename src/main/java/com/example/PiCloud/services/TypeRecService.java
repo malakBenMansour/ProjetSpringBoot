@@ -50,7 +50,7 @@ public class TypeRecService implements ITypeRec{
     public int countAllByNom(String nom) {
         return typeRecRepository.countAllByNom(nom);
     }
-//    public List<TypeReclamation> findTypeReclamationByDateCreationBetween(Date date1, Date date2) {
-//        return typeRecRepository.findTypeReclamationByDateCreationBetween( date1,date2);
-//    }
+    public List<TypeReclamation> findTypeReclamationByDateCreationBetween(Date date1, Date date2) {
+        return typeRecRepository.findTypeReclamationByDateCreationBetween( date1,date2);
+    }
 }

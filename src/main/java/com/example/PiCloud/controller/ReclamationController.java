@@ -81,5 +81,9 @@ public class ReclamationController {
     List<Reclamation> findByStatusOrderByDateCreationDesc(@PathVariable Status status) {
         return iRec.findByStatusOrderByDateCreationDesc(status);
     }
+    @PutMapping("/asseignRecToTypeRec/{idRec}/{idType}")
+    public void asseignRecToTypeRec(@PathVariable Long idRec,@PathVariable Long idType) {
+        iRec.asseignRecToTypeRec(idRec,idType);
+    }
 }
 

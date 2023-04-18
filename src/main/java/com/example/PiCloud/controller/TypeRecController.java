@@ -3,6 +3,7 @@ package com.example.PiCloud.controller;
 import com.example.PiCloud.entities.Reclamation;
 import com.example.PiCloud.entities.Status;
 import com.example.PiCloud.entities.TypeReclamation;
+import com.example.PiCloud.repository.TypeRecRepository;
 import com.example.PiCloud.services.TypeRecService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,6 +20,8 @@ public class TypeRecController {
 
     @Autowired
     TypeRecService typeRecService ;
+    @Autowired
+    private TypeRecRepository typeRecRepository;
 
 
     @PostMapping("/AddTypeRec")
@@ -51,6 +54,12 @@ public class TypeRecController {
     @GetMapping("/countAllTypeByNom/{nom}")
     int countAllByNom(@PathVariable String nom){
         return typeRecService.countAllByNom(nom);
+    }
+
+
+    @GetMapping("/getTypeReclamationEntreDeuxDate/{Date1}/{Date2}")
+    List<TypeReclamation> getReclamationEntreDeuxDate(@PathVariable  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date Date1 ,@PathVariable  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date Date2) {
+        return typeRecService.findTypeReclamationByDateCreationBetween(Date1 , Date2);
     }
 
 

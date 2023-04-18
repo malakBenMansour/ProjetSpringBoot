@@ -32,4 +32,43 @@ public class TypeReclamation implements Serializable {
     @OneToMany(mappedBy = "typeReclamation", cascade = CascadeType.ALL)
     private List<Reclamation> reclamations;
 
+    public long getIdType() {
+        return idType;
+    }
+
+    public void setIdType(long idType) {
+        this.idType = idType;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public List<Reclamation> getReclamations() {
+        return reclamations;
+    }
+
+    public void setReclamations(List<Reclamation> reclamations) {
+        this.reclamations = reclamations;
+    }
 }

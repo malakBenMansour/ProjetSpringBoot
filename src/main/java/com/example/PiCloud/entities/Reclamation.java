@@ -34,4 +34,5 @@ public class Reclamation implements Serializable  {
     @JoinColumn(name = "type_reclamation_id")
     private TypeReclamation typeReclamation;
 
+
 }

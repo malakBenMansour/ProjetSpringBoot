@@ -23,7 +23,9 @@ public interface ReclamationRepository extends JpaRepository<Reclamation , Long 
 
     int countAllByStatus(Status status);
     @Query("select r from Reclamation r order by r.nomRec ASC ")
-List<Reclamation> getAllOrderedByNomASC();
+    List<Reclamation> getAllOrderedByNomASC();
+
+
 
 
 

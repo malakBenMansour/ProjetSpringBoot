@@ -4,7 +4,9 @@ package com.example.PiCloud.services;
 import com.example.PiCloud.entities.Reclamation;
 import com.example.PiCloud.entities.ReclamationComparator;
 import com.example.PiCloud.entities.Status;
+import com.example.PiCloud.entities.TypeReclamation;
 import com.example.PiCloud.repository.ReclamationRepository;
+import com.example.PiCloud.repository.TypeRecRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +16,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+
 @AllArgsConstructor
 @Service
 public class ReclamationService implements IReclamation {
 
     @Autowired
     ReclamationRepository reclamationRepository ;
+    TypeRecRepository typeRecRepository ;
+    TypeRecService typeRecService;
 
 
     public Reclamation addReclamation(Reclamation rec) {
@@ -85,6 +90,16 @@ public class ReclamationService implements IReclamation {
 
     public List<Reclamation> findByStatusOrderByDateCreationDesc(Status status) {
         return reclamationRepository.findByStatusOrderByDateCreationDesc(status);
+    }
+
+    @Override
+    public void asseignRecToTypeRec(Long idRec, Long idType) {
+        Reclamation reclamation = reclamationRepository.findById(idRec).orElse(null);
+
+
+        TypeReclamation typeReclamation = typeRecRepository.findById(idType).orElse(null);
+        reclamation.setTypeReclamation(typeReclamation);
+        reclamationRepository.save(reclamation);
     }
 
 }

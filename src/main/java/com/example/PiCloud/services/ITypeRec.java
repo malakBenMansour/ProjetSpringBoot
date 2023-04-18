@@ -17,7 +17,8 @@ public interface ITypeRec {
     List<TypeReclamation> retrieveAllTypeReclamations();
 
     TypeReclamation retrieveTypeReclamation( Long idType);
+
     Set<TypeReclamation> findTypeByDateCreation(Date DateCreation);
     int countAllByNom(String nom);
-//    List<TypeReclamation> findTypeReclamationByDateCreationBetween(Date date1, Date date2);
+  List<TypeReclamation> findTypeReclamationByDateCreationBetween(Date date1, Date date2);
 }

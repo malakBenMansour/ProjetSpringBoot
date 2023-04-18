@@ -25,5 +25,6 @@ public interface IReclamation {
     int countAllByStatus(Status status);
     List<Reclamation> getAllOrderedByNomASC();
     List<Reclamation> findByStatusOrderByDateCreationDesc(Status status);
+    void asseignRecToTypeRec(Long idRec, Long idType);
 
 }
