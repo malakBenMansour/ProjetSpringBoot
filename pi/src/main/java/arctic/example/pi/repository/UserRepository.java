@@ -4,7 +4,6 @@ import arctic.example.pi.DTO.CountType;
 import arctic.example.pi.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -36,4 +35,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Query(value="SELECT new arctic.example.pi.DTO.CountType(count(*),stateuser) from User  group by stateuser")
      List<CountType> statistque();
+
 }

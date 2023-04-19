@@ -150,6 +150,7 @@ public class UserServiceImp implements UserService{
 // export pdf
 public  ByteArrayInputStream userExport(List<User> users) {
    Document document = new Document();
+
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     try {
         PdfWriter.getInstance(document, out);
