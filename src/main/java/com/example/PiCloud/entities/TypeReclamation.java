@@ -2,6 +2,7 @@ package com.example.PiCloud.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,7 @@ public class TypeReclamation implements Serializable {
 
 
     @OneToMany(mappedBy = "typeReclamation", cascade = CascadeType.ALL)
+
     private List<Reclamation> reclamations;
 
     public long getIdType() {

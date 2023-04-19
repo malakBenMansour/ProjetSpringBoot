@@ -85,5 +85,11 @@ public class ReclamationController {
     public void asseignRecToTypeRec(@PathVariable Long idRec,@PathVariable Long idType) {
         iRec.asseignRecToTypeRec(idRec,idType);
     }
+
+
+    @GetMapping("/retrieveReclamationsByType/{idType}")
+    public List<Reclamation> retrieveReclamationsByType(@PathVariable Long idType) {
+        return iRec.retrieveReclamationsByType(idType);
+    }
 }
 

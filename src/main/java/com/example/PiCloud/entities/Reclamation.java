@@ -1,6 +1,7 @@
 package com.example.PiCloud.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,8 +31,9 @@ public class Reclamation implements Serializable  {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateCreation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "type_reclamation_id")
+    @JsonIgnore
     private TypeReclamation typeReclamation;
 
 
