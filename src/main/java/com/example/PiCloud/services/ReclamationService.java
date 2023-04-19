@@ -102,4 +102,9 @@ public class ReclamationService implements IReclamation {
         reclamationRepository.save(reclamation);
     }
 
+    public List<Reclamation> retrieveReclamationsByType(Long idType) {
+        TypeReclamation typeReclamation = typeRecRepository.findById(idType).orElse(null);
+        return  typeReclamation.getReclamations();
+    }
+
 }
