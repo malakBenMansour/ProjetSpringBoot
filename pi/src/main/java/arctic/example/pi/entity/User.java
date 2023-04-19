@@ -72,7 +72,8 @@ public class User implements Serializable {
     Organisation organisation;
 
     public User(@Size(max = 80) String username, @Size(max = 50) @Email String email, @Size(max = 120) String password,
-                String address, @Size(max = 50) String tel, @Size(max = 50) String nom, @Size(max = 50) String prenom, Date birth) {
+                String address, @Size(max = 50) String tel, @Size(max = 50) String nom, @Size(max = 50) String prenom,
+             Date birth) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -81,6 +82,8 @@ public class User implements Serializable {
         this.nom = nom;
         this.prenom = prenom;
         this.datenaissance=birth;
+
+
 
     }
 

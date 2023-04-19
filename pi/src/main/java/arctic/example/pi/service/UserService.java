@@ -29,4 +29,5 @@ public interface UserService {
     public  ByteArrayInputStream userExport(List<User> users);
     public void forgotpass(String emailuser);
     User addOrganisationToUser(String username, Long id);
+    User desactivateUser(User user1);
 }

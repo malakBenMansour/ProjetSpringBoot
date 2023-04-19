@@ -81,6 +81,9 @@ public class UserController {
         return userService.activateUser(user);
     }
 
+    // desactiver User
+
+
     // Modifier Password
     @PutMapping("/updatepassword/{emailUser}/{password}/{cpassword}")
     void updatePassword(@PathVariable("emailUser") String emailUser, @PathVariable("password") String newPassword,

@@ -126,7 +126,24 @@ public class UserServiceImp implements UserService{
         user.setAddress(user1.getAddress());
         return userRepo.save(user);
     }
-
+    @Override
+    public User desactivateUser(User user1)
+    { User user=userRepo.findByUsername(user1.getUsername());
+        if(user.isStateuser()==true)
+        {
+            user.setStateuser(false);
+        }
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
+        user.setEmail(user1.getEmail());
+        user.setNom(user1.getNom());
+        user.setPrenom(user1.getPrenom());
+        user.setDatenaissance(user1.getDatenaissance());
+        user.setTel(user1.getTel());
+        user.setAddress(user1.getAddress());
+        return userRepo.save(user);
+    }
     // update password
     public void updatePassword(String emailUser, String newPassword, String confirmPassword) {
        User u = userRepo.findByEmail(emailUser);
