@@ -42,6 +42,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -52,6 +53,29 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.9</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>javax.telephony</groupId>-->
+<!--            <artifactId>jta</artifactId>-->
+<!--            <version>1.0.1</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>javax.telephony</groupId>-->
+<!--            <artifactId>jtapi</artifactId>-->
+<!--            <version>1.4.1</version>-->
+<!--        </dependency>-->
+
+
+
+
+
+
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>7.55.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
