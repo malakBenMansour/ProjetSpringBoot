@@ -107,4 +107,5 @@ public class ReclamationService implements IReclamation {
         return  typeReclamation.getReclamations();
     }
 
+
 }
