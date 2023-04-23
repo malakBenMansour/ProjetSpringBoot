@@ -1,8 +1,6 @@
 package com.example.PiCloud.repository;
 
-import com.example.PiCloud.entities.Reclamation;
-import com.example.PiCloud.entities.Status;
-import com.example.PiCloud.entities.TypeReclamation;
+import com.example.PiCloud.entity.TypeReclamation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

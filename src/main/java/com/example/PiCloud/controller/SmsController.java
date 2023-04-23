@@ -1,8 +1,8 @@
 package com.example.PiCloud.controller;
 
 
-import com.example.PiCloud.entities.SmsRequest;
-import com.example.PiCloud.services.TwilioService;
+import com.example.PiCloud.entity.SmsRequest;
+import com.example.PiCloud.service.TwilioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

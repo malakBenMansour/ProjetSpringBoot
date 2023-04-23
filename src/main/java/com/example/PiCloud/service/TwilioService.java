@@ -1,7 +1,7 @@
-package com.example.PiCloud.services;
+package com.example.PiCloud.service;
 
-import com.example.PiCloud.entities.SmsRequest;
-import com.example.PiCloud.entities.TwilioConfiguration;
+import com.example.PiCloud.entity.SmsRequest;
+import com.example.PiCloud.entity.TwilioConfiguration;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;

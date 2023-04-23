@@ -1,10 +1,10 @@
-package com.example.PiCloud.services;
+package com.example.PiCloud.service;
 
 
-import com.example.PiCloud.entities.Reclamation;
-import com.example.PiCloud.entities.ReclamationComparator;
-import com.example.PiCloud.entities.Status;
-import com.example.PiCloud.entities.TypeReclamation;
+import com.example.PiCloud.entity.Reclamation;
+import com.example.PiCloud.entity.ReclamationComparator;
+import com.example.PiCloud.entity.Status;
+import com.example.PiCloud.entity.TypeReclamation;
 import com.example.PiCloud.repository.ReclamationRepository;
 import com.example.PiCloud.repository.TypeRecRepository;
 import lombok.AllArgsConstructor;

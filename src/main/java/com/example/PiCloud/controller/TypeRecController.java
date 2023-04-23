@@ -1,10 +1,8 @@
 package com.example.PiCloud.controller;
 
-import com.example.PiCloud.entities.Reclamation;
-import com.example.PiCloud.entities.Status;
-import com.example.PiCloud.entities.TypeReclamation;
+import com.example.PiCloud.entity.TypeReclamation;
 import com.example.PiCloud.repository.TypeRecRepository;
-import com.example.PiCloud.services.TypeRecService;
+import com.example.PiCloud.service.TypeRecService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;

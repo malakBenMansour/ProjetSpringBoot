@@ -1,7 +1,6 @@
-package com.example.PiCloud.services;
+package com.example.PiCloud.service;
 
-import com.example.PiCloud.entities.Reclamation;
-import com.example.PiCloud.entities.TypeReclamation;
+import com.example.PiCloud.entity.TypeReclamation;
 
 import java.util.Date;
 import java.util.List;

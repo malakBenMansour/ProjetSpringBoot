@@ -1,4 +1,4 @@
-package com.example.PiCloud.entities;
+package com.example.PiCloud.entity;
 
 import java.util.Comparator;
 

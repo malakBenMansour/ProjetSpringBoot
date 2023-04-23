@@ -1,9 +1,8 @@
 package com.example.PiCloud.controller;
 
-import com.example.PiCloud.entities.Reclamation;
-import com.example.PiCloud.entities.Status;
-import com.example.PiCloud.services.ReclamationService;
-import lombok.AllArgsConstructor;
+import com.example.PiCloud.entity.Reclamation;
+import com.example.PiCloud.entity.Status;
+import com.example.PiCloud.service.ReclamationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
