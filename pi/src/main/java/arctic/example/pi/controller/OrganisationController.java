@@ -26,7 +26,9 @@ public class OrganisationController {
     }
     @PostMapping("/ajouter")
     public Organisation ajouter(@RequestBody Organisation organisation)
-    {
+    {  //Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        //String userName = loggedInUser.getName();
+        //User user = userRepository.findByUsername(userName).get();
         return organisationService.saveOrganisation(organisation);
     }
     @PutMapping("/update")

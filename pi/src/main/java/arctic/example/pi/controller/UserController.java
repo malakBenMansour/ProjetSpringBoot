@@ -5,14 +5,20 @@ import arctic.example.pi.entity.ERole;
 import arctic.example.pi.entity.User;
 import arctic.example.pi.repository.UserRepository;
 import arctic.example.pi.service.UserService;
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -85,11 +91,35 @@ public class UserController {
 
 
     // Modifier Password
-    @PutMapping("/updatepassword/{emailUser}/{password}/{cpassword}")
+ /*   @PutMapping("/updatepassword/{emailUser}/{password}/{cpassword}")
     void updatePassword(@PathVariable("emailUser") String emailUser, @PathVariable("password") String newPassword,
                         @PathVariable("cpassword") String confirmPassword) {
         userService.updatePassword(emailUser, newPassword, confirmPassword);
     }
+    */
+    @PutMapping("/updatepassword")
+    public ResponseEntity<?>  processResetPassword(HttpServletRequest request) {
+        String mail = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        User user = userService.getUserByMail(mail);
+
+        if (user == null) {
+
+            String  mesg= "Invalid mail";
+
+            return ResponseEntity.ok(mesg);
+
+        } else {
+            BCryptPasswordEncoder passwordEncoder =new BCryptPasswordEncoder();
+            userService.updatePassword(user.getEmail(), passwordEncoder.encode( password));
+            String mesg="You have successfully changed your password.";
+            return ResponseEntity.ok(mesg);
+
+        }
+
+    }
+
     @GetMapping("/tri")
     public List<User> findAll()
     {
@@ -99,6 +129,12 @@ public class UserController {
     public List<CountType> statistque()
     {
         return userService.statistque();
+    }
+
+    @GetMapping("/statage")
+    public List<CountType> stats()
+    {
+        return userService.statistqueAge();
     }
 
     @GetMapping("/exportpdf")
@@ -122,4 +158,21 @@ public class UserController {
     public User addOrganisationToUser(@PathVariable(value="username") String username,@PathVariable(value="id") Long id){
      return userService.addOrganisationToUser(username,id);
     }
+
+
+    @GetMapping("/findstream")
+    public List<User> searchh(@RequestParam  String nom){
+        return userService.searchh(nom);
+    }
+
+
+// Scheduler
+    @GetMapping("/scheduler")
+    public List<User> getdisabledUsers()
+    {return userService.getdisable();}
+
+
+
+
+
 }

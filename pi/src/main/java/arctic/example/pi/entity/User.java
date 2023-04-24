@@ -28,12 +28,12 @@ public class User implements Serializable {
 
 
 @Size(max=50)
-    private String nom;
+    private String name;
     @Size(max=50)
     private String prenom;
 
     @Size(max=50)
-    @NotNull
+   @NotNull
     String username;
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd")
@@ -79,7 +79,7 @@ public class User implements Serializable {
         this.password = password;
         this.address = address;
         this.tel = tel;
-        this.nom = nom;
+        this.name = nom;
         this.prenom = prenom;
         this.datenaissance=birth;
 

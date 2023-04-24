@@ -26,8 +26,8 @@ public interface UserRepository extends JpaRepository<User,Long> {
     Date getmaxage();
 
 
-    @Query("SELECT COUNT(e.stateuser) FROM User e WHERE e.stateuser=false")
-    int getNbDisabled();
+    //@Query("SELECT COUNT(e.stateuser) FROM User e WHERE e.stateuser=false")
+    //int getNbDisabled();
 
 
     List<User> findAllByOrderByRolesDesc();
@@ -35,5 +35,13 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Query(value="SELECT new arctic.example.pi.DTO.CountType(count(*),stateuser) from User  group by stateuser")
      List<CountType> statistque();
+    @Query("SELECT new arctic.example.pi.DTO.CountType(count(*), u.datenaissance,u.stateuser) FROM User u GROUP BY u.datenaissance ORDER BY u.datenaissance ASC")
+
+    List<CountType>minmaxeage();
+
+
+    @Query("SELECT e,COUNT(e.stateuser) FROM User e WHERE e.stateuser=false")
+    List<User> getusersdisable();
+
 
 }
