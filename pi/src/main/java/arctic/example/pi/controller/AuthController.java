@@ -283,7 +283,7 @@ return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 		} else {
 			userFace = createUser(email);
 		}
-		///////////////////////////
+		//
 		JwtLogin jwtLogin = new JwtLogin();
 		jwtLogin.setUsername(user.getFirstName());
 		jwtLogin.setPassword(user.getEmail());
