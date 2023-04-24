@@ -1,7 +1,11 @@
 package arctic.example.pi.payload.request;
 
-import javax.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+@Getter
+@Setter
 public class LoginRequest {
 	@NotBlank
 	private String username;
@@ -9,7 +13,9 @@ public class LoginRequest {
 	@NotBlank
 	private String password;
 
-	public String getUsername() {
+
+
+	/*public String getUsername() {
 		return username;
 	}
 
@@ -23,5 +29,5 @@ public class LoginRequest {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
+	}*/
 }
