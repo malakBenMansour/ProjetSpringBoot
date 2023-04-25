@@ -1,15 +1,15 @@
-package com.example.PiCloud;
+package arctic.example.pi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
-
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
-public class piCloud {
+@EnableWebMvc
+public class PiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(piCloud.class, args);
+        SpringApplication.run(PiApplication.class, args);
     }
 
 }

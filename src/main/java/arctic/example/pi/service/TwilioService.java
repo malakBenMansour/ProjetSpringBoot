@@ -1,7 +1,7 @@
-package com.example.PiCloud.service;
+package arctic.example.pi.service;
 
-import com.example.PiCloud.entity.SmsRequest;
-import com.example.PiCloud.entity.TwilioConfiguration;
+import arctic.example.pi.entity.SmsRequest;
+import arctic.example.pi.entity.TwilioConfiguration;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;

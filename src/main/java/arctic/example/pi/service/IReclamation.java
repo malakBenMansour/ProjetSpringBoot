@@ -1,7 +1,7 @@
-package com.example.PiCloud.service;
+package arctic.example.pi.service;
 
-import com.example.PiCloud.entity.Reclamation;
-import com.example.PiCloud.entity.Status;
+import arctic.example.pi.entity.Reclamation;
+import arctic.example.pi.entity.Status;
 
 import java.util.Date;
 import java.util.List;

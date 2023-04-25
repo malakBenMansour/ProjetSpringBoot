@@ -1,8 +1,8 @@
-package com.example.PiCloud.repository;
+package arctic.example.pi.repository;
 
 
-import com.example.PiCloud.entity.Reclamation;
-import com.example.PiCloud.entity.Status;
+import arctic.example.pi.entity.Reclamation;
+import arctic.example.pi.entity.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public interface ReclamationRepository extends JpaRepository<Reclamation , Long > {
+public interface ReclamationRepository extends JpaRepository<Reclamation, Long > {
     Set<Reclamation> findByNomRec(String nomRec);
     Set<Reclamation> findByDateCreation(Date DateCreation);
     List<Reclamation> findByDateCreationBetween(Date date1, Date date2);

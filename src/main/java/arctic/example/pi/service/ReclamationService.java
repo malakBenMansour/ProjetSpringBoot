@@ -1,12 +1,12 @@
-package com.example.PiCloud.service;
+package arctic.example.pi.service;
 
 
-import com.example.PiCloud.entity.Reclamation;
-import com.example.PiCloud.entity.ReclamationComparator;
-import com.example.PiCloud.entity.Status;
-import com.example.PiCloud.entity.TypeReclamation;
-import com.example.PiCloud.repository.ReclamationRepository;
-import com.example.PiCloud.repository.TypeRecRepository;
+import arctic.example.pi.entity.Reclamation;
+import arctic.example.pi.entity.ReclamationComparator;
+import arctic.example.pi.entity.Status;
+import arctic.example.pi.entity.TypeReclamation;
+import arctic.example.pi.repository.ReclamationRepository;
+import arctic.example.pi.repository.TypeRecRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

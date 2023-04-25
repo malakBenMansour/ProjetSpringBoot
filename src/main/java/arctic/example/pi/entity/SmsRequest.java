@@ -1,4 +1,4 @@
-package com.example.PiCloud.entity;
+package arctic.example.pi.entity;
 
 public class SmsRequest {
     private String phoneNumber;

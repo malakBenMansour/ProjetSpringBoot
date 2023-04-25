@@ -1,6 +1,6 @@
-package com.example.PiCloud.service;
+package arctic.example.pi.service;
 
-import com.example.PiCloud.entity.TypeReclamation;
+import arctic.example.pi.entity.TypeReclamation;
 
 import java.util.Date;
 import java.util.List;

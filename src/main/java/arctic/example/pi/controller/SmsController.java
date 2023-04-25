@@ -1,16 +1,13 @@
-package com.example.PiCloud.controller;
+package arctic.example.pi.controller;
 
 
-import com.example.PiCloud.entity.SmsRequest;
-import com.example.PiCloud.service.TwilioService;
+import arctic.example.pi.entity.SmsRequest;
+import arctic.example.pi.service.TwilioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
     @RequestMapping("/api/sms")
     public class SmsController {

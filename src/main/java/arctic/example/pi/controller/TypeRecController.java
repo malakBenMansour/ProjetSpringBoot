@@ -1,8 +1,8 @@
-package com.example.PiCloud.controller;
+package arctic.example.pi.controller;
 
-import com.example.PiCloud.entity.TypeReclamation;
-import com.example.PiCloud.repository.TypeRecRepository;
-import com.example.PiCloud.service.TypeRecService;
+import arctic.example.pi.repository.TypeRecRepository;
+import arctic.example.pi.entity.TypeReclamation;
+import arctic.example.pi.service.TypeRecService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/TypeRec")
 public class TypeRecController {

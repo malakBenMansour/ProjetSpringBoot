@@ -1,4 +1,4 @@
-package com.example.PiCloud.entity;
+package arctic.example.pi.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;

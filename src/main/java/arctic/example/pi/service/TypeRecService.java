@@ -1,8 +1,8 @@
-package com.example.PiCloud.service;
+package arctic.example.pi.service;
 
 
-import com.example.PiCloud.entity.TypeReclamation;
-import com.example.PiCloud.repository.TypeRecRepository;
+import arctic.example.pi.repository.TypeRecRepository;
+import arctic.example.pi.entity.TypeReclamation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.Set;
 public class TypeRecService implements ITypeRec{
 
     @Autowired
-     TypeRecRepository typeRecRepository;
+    TypeRecRepository typeRecRepository;
 
     public TypeReclamation addTypeReclamation(TypeReclamation t) {
         return typeRecRepository.save(t);
