@@ -1,6 +1,7 @@
 package arctic.example.pi.service;
 
 
+import arctic.example.pi.DTO.CountType;
 import arctic.example.pi.repository.TypeRecRepository;
 import arctic.example.pi.entity.TypeReclamation;
 import lombok.AllArgsConstructor;
@@ -50,5 +51,10 @@ public class TypeRecService implements ITypeRec{
     }
     public List<TypeReclamation> findTypeReclamationByDateCreationBetween(Date date1, Date date2) {
         return typeRecRepository.findTypeReclamationByDateCreationBetween( date1,date2);
+    }
+
+    public List<CountType> statistque()
+    {
+        return typeRecRepository.statistque();
     }
 }

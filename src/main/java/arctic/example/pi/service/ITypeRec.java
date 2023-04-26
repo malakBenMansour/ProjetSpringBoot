@@ -1,5 +1,6 @@
 package arctic.example.pi.service;
 
+import arctic.example.pi.DTO.CountType;
 import arctic.example.pi.entity.TypeReclamation;
 
 import java.util.Date;
@@ -20,4 +21,5 @@ public interface ITypeRec {
     Set<TypeReclamation> findTypeByDateCreation(Date DateCreation);
     int countAllByNom(String nom);
   List<TypeReclamation> findTypeReclamationByDateCreationBetween(Date date1, Date date2);
+    List<CountType> statistque();
 }

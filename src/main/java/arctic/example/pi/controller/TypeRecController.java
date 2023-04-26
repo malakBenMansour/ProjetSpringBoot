@@ -1,5 +1,6 @@
 package arctic.example.pi.controller;
 
+import arctic.example.pi.DTO.CountType;
 import arctic.example.pi.repository.TypeRecRepository;
 import arctic.example.pi.entity.TypeReclamation;
 import arctic.example.pi.service.TypeRecService;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 @CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("/TypeRec")
 public class TypeRecController {
@@ -60,6 +62,11 @@ public class TypeRecController {
         return typeRecService.findTypeReclamationByDateCreationBetween(Date1 , Date2);
     }
 
+    @GetMapping("/stat")
+    public List<CountType> statistque()
+    {
+        return typeRecService.statistque();
+    }
 
 
 }
