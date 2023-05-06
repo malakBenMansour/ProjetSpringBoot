@@ -36,4 +36,5 @@ public interface UserService {
     public     List<CountType> statistqueAge();
     public List<User> getdisable();
     public User findById(Long id) ;
+    public List<CountType> statistque1();
 }

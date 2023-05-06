@@ -186,6 +186,11 @@ public class UserController {
         return userService.statistqueAge();
     }
 
+
+    @GetMapping("/stati")
+    public List<CountType> statistque1(){
+        return userService.statistque1();
+    }
     @GetMapping("/exportpdf")
     public ResponseEntity<InputStreamResource> exportPdf() {
         List<User> users = (List<User>) userService.getUsers();

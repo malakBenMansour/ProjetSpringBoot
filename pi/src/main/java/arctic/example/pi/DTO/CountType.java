@@ -14,6 +14,7 @@ import java.util.Date;
 public class CountType {
     private Long count;
     private  Boolean stateuser;
+    private String adresse;
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date datebirth;
@@ -25,6 +26,10 @@ public class CountType {
     public CountType(Long count,Date datebirth)
     {this.count=count;
         this.datebirth=datebirth;
+    }
+    public CountType(Long count,String address)
+    {this.count=count;
+        this.adresse=address;
     }
     public CountType(Long count,Date datebirth,Boolean stateuser)
     {this.count=count;

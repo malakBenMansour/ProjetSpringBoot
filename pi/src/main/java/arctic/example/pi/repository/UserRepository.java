@@ -38,6 +38,9 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Query("SELECT new arctic.example.pi.DTO.CountType(count(*), u.datenaissance,u.stateuser) FROM User u GROUP BY u.datenaissance ORDER BY u.datenaissance ASC")
 
     List<CountType>minmaxeage();
+    @Query("SELECT new arctic.example.pi.DTO.CountType(count(*), u.address) FROM User u GROUP BY u.address ORDER BY u.address ASC")
+
+    List<CountType>adresse();
 
 
     @Query("SELECT e,COUNT(e.stateuser) FROM User e WHERE e.stateuser=false")

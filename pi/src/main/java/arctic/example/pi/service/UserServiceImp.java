@@ -190,6 +190,14 @@ public class UserServiceImp implements UserService{
        return userRepo.statistque();
    }
 
+
+
+    public List<CountType> statistque1()
+    {
+        return userRepo.adresse();
+    }
+
+
    // stats nbre of max age
    public  List<CountType> statistqueAge()
    {
