@@ -27,9 +27,14 @@ public class ReclamationService implements IReclamation {
     TypeRecService typeRecService;
 
 
-    public Reclamation addReclamation(Reclamation rec) {
-        return reclamationRepository.save(rec);
-    }
+//    public Reclamation addReclamation(Reclamation rec) {
+//        return reclamationRepository.save(rec);
+//    }
+public Reclamation addReclamation(Reclamation rec, Long idType) {
+    TypeReclamation typeReclamation =  typeRecRepository.findById(idType).orElse(null);
+    rec.setTypeReclamation(typeReclamation);
+    return reclamationRepository.save(rec);
+}
     public void deleteReclamation(Long idRec) {
         reclamationRepository.deleteById(idRec);
 
@@ -52,7 +57,7 @@ public class ReclamationService implements IReclamation {
 
     @Override
     public Set<Reclamation> getReclamationByNom(String nomRec) {
-        return reclamationRepository.findByNomRec(nomRec);
+        return null;
     }
     @Override
     public Set<Reclamation> getReclamationByDateCreation(Date DateCreation) {
@@ -120,5 +125,24 @@ public class ReclamationService implements IReclamation {
             }
         }
         return typeWithMaxClaims;
+    }
+
+    public Set<Reclamation> findByIdRec(Long idRec) {
+        return reclamationRepository.findByIdRec(idRec);
+    }
+
+    public void activer(Reclamation user1)
+    { Reclamation user=  reclamationRepository.findById(user1.getIdRec()).get();
+
+        if(user.getStatus()==Status.non_traitée)
+        {
+            user.setStatus(Status.traitée);
+        }
+        user.setNomRec(user1.getNomRec());
+        user.setDescription(user1.getDescription());
+        user.setNumTel(user1.getNumTel());
+        user.setPriority(user1.getPriority());
+        user.setDateCreation(user1.getDateCreation());
+         reclamationRepository.save(user);
     }
 }

@@ -13,11 +13,12 @@ import java.util.Set;
 
 @Repository
 public interface ReclamationRepository extends JpaRepository<Reclamation, Long > {
-    Set<Reclamation> findByNomRec(String nomRec);
+  Reclamation findByNomRec(String nomRec);
+    Set<Reclamation> findByIdRec (Long idRec);
     Set<Reclamation> findByDateCreation(Date DateCreation);
     List<Reclamation> findByDateCreationBetween(Date date1, Date date2);
 
-
+Reclamation existsByNomRec(String nomRec);
     @Query("select r from Reclamation r where r.status=:status order by r.dateCreation ASC ")
     List<Reclamation> findByStatusOrderByDateCreationDesc(Status status);
 

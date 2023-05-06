@@ -9,7 +9,9 @@ import java.util.Set;
 
 public interface IReclamation {
 
-    public Reclamation addReclamation(Reclamation rec) ;
+//    public Reclamation addReclamation(Reclamation rec) ;
+    public Reclamation addReclamation(Reclamation rec, Long idType);
+    Set<Reclamation> findByIdRec (Long idRec);
     void deleteReclamation(Long idRec);
 
     Reclamation updateReclamation(Reclamation rec);
@@ -24,9 +26,12 @@ public interface IReclamation {
     List<Reclamation> trierReclamationsParPriorite();
     int countAllByStatus(Status status);
     List<Reclamation> getAllOrderedByNomASC();
+
     List<Reclamation> findByStatusOrderByDateCreationDesc(Status status);
     void asseignRecToTypeRec(Long idRec, Long idType);
         List<Reclamation> retrieveReclamationsByType(Long idType);
+
+
 
 
 }

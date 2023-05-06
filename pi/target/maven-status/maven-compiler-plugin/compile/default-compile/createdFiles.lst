@@ -1,0 +1,16 @@
+arctic\example\pi\service\IReclamation.class
+arctic\example\pi\controller\SmsController.class
+arctic\example\pi\entity\TwilioConfiguration.class
+arctic\example\pi\controller\TypeRecController.class
+arctic\example\pi\entity\Status.class
+arctic\example\pi\service\TwilioService.class
+arctic\example\pi\entity\ReclamationComparator.class
+arctic\example\pi\repository\TypeRecRepository.class
+arctic\example\pi\entity\Reclamation.class
+arctic\example\pi\repository\ReclamationRepository.class
+arctic\example\pi\entity\SmsRequest.class
+arctic\example\pi\service\ITypeRec.class
+arctic\example\pi\service\ReclamationService.class
+arctic\example\pi\service\TypeRecService.class
+arctic\example\pi\controller\ReclamationController.class
+arctic\example\pi\entity\TypeReclamation.class

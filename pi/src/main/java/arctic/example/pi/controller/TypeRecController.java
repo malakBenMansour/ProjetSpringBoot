@@ -10,6 +10,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -49,9 +50,29 @@ public class TypeRecController {
     void deleteTypeReclamation(@PathVariable Long idType) {
         typeRecService.deleteTypeRec(idType);
     }
-    @PutMapping("/ModifierTypeReclamation")
-    TypeReclamation updateTypeReclamation(@RequestBody TypeReclamation i) {
-        return typeRecService.updateTypeReclamation(i);
+//    @PutMapping("/ModifierTypeReclamation")
+//    TypeReclamation updateTypeReclamation(@RequestBody TypeReclamation i) {
+//        return typeRecService.updateTypeReclamation(i);
+//    }
+
+    @PutMapping("/ModifierTypeReclamation/{idType}")
+    public ResponseEntity<?> updateTypeReclamation(@PathVariable("idType") Long idType, @RequestBody TypeReclamation update) {
+        TypeReclamation typeReclamation = typeRecRepository.findById(idType).get();
+        if(typeReclamation == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        typeReclamation.setDateCreation(update.getDateCreation());
+        typeReclamation.setDescription(update.getDescription());
+        typeReclamation.setNom(update.getNom());
+
+
+        TypeReclamation savrec=typeRecService.addTypeReclamation(update);
+        if(savrec == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok().body(savrec);
     }
 
     @GetMapping("/AfficherByDate/{DateCreation}")

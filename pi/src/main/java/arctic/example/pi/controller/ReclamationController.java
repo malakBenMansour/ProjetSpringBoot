@@ -26,9 +26,9 @@ public class ReclamationController {
     @Autowired
     ReclamationService iRec;
 
-    @PostMapping("/addRec")
-    Reclamation addReclamation(@RequestBody Reclamation r) {
-        return iRec.addReclamation(r);
+    @PostMapping("/addRec/{id}")
+    Reclamation addReclamation(@RequestBody Reclamation r,@PathVariable Long id) {
+        return iRec.addReclamation(r,id);
     }
     @GetMapping("/AfficherRec/{idRec}")
     Reclamation retrieveReclamation(@PathVariable Long idRec) {
@@ -49,9 +49,22 @@ public class ReclamationController {
     }
 
 
+
+    @PutMapping("/activer")
+    public void activateUser(@RequestBody Reclamation user)
+    {
+         iRec.activer(user);
+    }
+
+
     @GetMapping("/AfficherByNom/{nomRec}")
     Set<Reclamation> getReclamationByNom(@PathVariable String nomRec) {
         return iRec.getReclamationByNom(nomRec);
+    }
+
+    @GetMapping("/AfficherById/{idRec}")
+    Set<Reclamation> getReclamationByIdRec(@PathVariable Long idRec) {
+        return iRec.findByIdRec(idRec);
     }
 
     @GetMapping("/AfficherByDate/{DateCreation}")
