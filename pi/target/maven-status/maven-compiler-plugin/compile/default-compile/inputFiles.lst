@@ -9,6 +9,7 @@ C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\control
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\DTO\CountColor.java
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\jwt\JwtUtils.java
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\payload\request\SignupRequest.java
+C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\entity\ConfirmationToken.java
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\service\RoleServiceImp.java
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\service\OrganisationServiceImp.java
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\payload\response\LoginResponse.java
@@ -32,6 +33,7 @@ C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\service
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\entity\TypeOrganisation.java
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\payload\response\TokenDto.java
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\payload\response\MessageResponse.java
+C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\repository\ConfirmationTokenRepository.java
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\entity\Organisation.java
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\jwt\AuthEntryPointJwt.java
 C:\Users\malak_6\Desktop\PICloud_Beta\pi\src\main\java\arctic\example\pi\security\UserDetailsImpl.java

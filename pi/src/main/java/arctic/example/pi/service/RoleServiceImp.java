@@ -22,7 +22,9 @@ public class RoleServiceImp implements RoleService{
        return roleRepo.save(role);
 
     }
-
+    public Role findID(Long id) {
+        return roleRepo.findById(id).get();
+    }
     @Override
     public void deleteRole(Long id) {
      roleRepo.deleteById(id);

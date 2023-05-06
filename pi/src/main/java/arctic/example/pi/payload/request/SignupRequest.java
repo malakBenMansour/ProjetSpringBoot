@@ -1,5 +1,6 @@
 package arctic.example.pi.payload.request;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.*;
 
 import arctic.example.pi.entity.Role;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -20,32 +22,30 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
-
-public class SignupRequest {
+public class SignupRequest implements Serializable {
     @NotBlank
     @Size(min = 3, max = 20)
-    @NonNull private String username;
+     private String username;
  
     @NotBlank
     @Size(max = 50)
     @Email
-    @NonNull private String email;
-    
+     private String email;
+
     private Set<String> role;
     
     @NotBlank
     @Size(min = 6, max = 40)
-    @NonNull  private String password;
+      private String password;
     
-    @NotBlank
-    @NonNull private String nom;
-    @NotBlank
-    @NonNull private String prenom;
+
+     private String name;
+
+     private String prenom;
     
-    @NotBlank
+
     private String address;
-    @NotBlank
+
     @Size(min = 8, max = 12)
     private String tel;
     

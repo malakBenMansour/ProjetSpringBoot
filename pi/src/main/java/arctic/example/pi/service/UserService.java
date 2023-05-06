@@ -35,4 +35,5 @@ public interface UserService {
     public boolean ifEmailExist(String email);
     public     List<CountType> statistqueAge();
     public List<User> getdisable();
+    public User findById(Long id) ;
 }

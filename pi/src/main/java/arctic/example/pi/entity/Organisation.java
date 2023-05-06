@@ -27,6 +27,9 @@ public class Organisation implements Serializable {
     private  TypeOrganisation typeorganisation;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="organisation")
     private Set<User> users;
+    @Column(columnDefinition = "longtext")
+    private String image;
 
 
 }
+
