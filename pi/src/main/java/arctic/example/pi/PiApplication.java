@@ -15,7 +15,6 @@ import java.util.Arrays;
 @SpringBootApplication
 @EnableWebMvc
 @EnableScheduling
-
 public class PiApplication {
 
 
