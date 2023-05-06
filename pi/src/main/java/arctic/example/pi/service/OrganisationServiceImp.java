@@ -6,6 +6,7 @@ import arctic.example.pi.entity.User;
 import arctic.example.pi.repository.OrganisationRepository;
 import arctic.example.pi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -19,13 +20,19 @@ public class OrganisationServiceImp implements OrganisationService {
     @Autowired
     UserRepository userRepository;
 
-    @Override
-    public Organisation saveOrganisation(Organisation organisation) {
-      return organisationRepository.save(organisation);
-    }
 
     @Override
+    public Organisation saveOrganisation(Organisation organisation) {
+
+      return organisationRepository.save(organisation);
+    }
+    @Override
+    public Organisation findById(Long id) {
+        return organisationRepository.findById(id).orElse(null);
+    }
+    @Override
     public Organisation updateOrganisation(Organisation organisation) {
+
         return organisationRepository.save(organisation);
     }
 
@@ -40,11 +47,12 @@ public class OrganisationServiceImp implements OrganisationService {
     }
 
     @Override
-    public Organisation addUserToOrganisation(Organisation organisation, Long iduser) {
+    public Organisation addUserToOrganisation( Organisation organisation,Long iduser) {
         User user=userRepository.findById(iduser).get();
-        Set<User> users=new HashSet<>();
-        users.add(user);
-        organisation.setUsers(users);
+        //Organisation organisation=organisationRepository.findById(idorg).get();
+        user.setOrganisation(organisation);
+        //organisation.getUsers().add(user);
+        System.out.println("goood");
         return organisationRepository.save(organisation);
     }
 
@@ -56,5 +64,11 @@ public class OrganisationServiceImp implements OrganisationService {
     @Override
     public List<Organisation> findAllByTypeorganisation(TypeOrganisation type) {
         return organisationRepository.findAllByTypeorganisation(type);
+    }
+
+    @Override
+    public Organisation findOrgById(Long id)
+    {         User user=userRepository.findById(id).get();
+        return organisationRepository.findByUsers(user);
     }
 }

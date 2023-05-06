@@ -58,6 +58,7 @@ public class UserServiceImp implements UserService{
        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
+        user.setStateuser(true);
 
         return userRepo.save(user);
     }
@@ -68,11 +69,24 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
+    public User findById(Long id) {
+        return userRepo.findById(id).orElse(null);
+    }
+
+    @Override
     public User updateUser(User user) {
+        User updateUser = userRepo.findById(user.getId()).get();
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
-        return userRepo.save(user);
+        updateUser.setPassword(hashedPassword);
+        updateUser.setName(user.getName());
+        updateUser.setPrenom(user.getPrenom());
+        updateUser.setTel(user.getTel());
+        updateUser.setAddress(user.getAddress());
+        updateUser.setUsername(user.getUsername());
+        updateUser.setDatenaissance(user.getDatenaissance());
+        updateUser.setEmail(user.getEmail());
+        return userRepo.save(updateUser);
     }
 //service avancés
     @Override
@@ -123,6 +137,10 @@ public class UserServiceImp implements UserService{
         {
             user.setStateuser(true);
         }
+        else if(user.isStateuser()==true)
+        {
+            user.setStateuser(false);
+        }
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
@@ -157,9 +175,7 @@ public class UserServiceImp implements UserService{
        User u = userRepo.findByEmail(emailUser);
       BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(newPassword);
-       // String encodedConfirmPassword = passwordEncoder.encode(confirmPassword);
         u.setPassword(encodedPassword);
-      //  u.setConfirmpassworduser(encodedConfirmPassword);
         userRepo.save(u);
     }
     public List<User>  findAllByOrderBOrderByRolesDesc()
@@ -249,15 +265,28 @@ public  ByteArrayInputStream userExport(List<User> users) {
 
 // forget password mailing
 
-public void forgotpass(String emailuser) {
-    // TODO Auto-generated method stub
+/*public void forgotpass(String emailuser) {
+
     User d = userRepo.findByEmail(emailuser);
         SimpleMailMessage mailMessage
                 = new SimpleMailMessage();
         mailMessage.setFrom(sender);
         mailMessage.setTo(emailuser);
         mailMessage.setText("This a non reply message from malak\n " + "Dear Client \n"
-                + "Please follow the following link to reser your password: \n" + "http://localhost:8090/user/updatepassword");
+                + "Please follow the following link to reset your password: \n" + "http://localhost:8090/user/updatepassword");
+        mailMessage.setSubject("password reset");
+        javaMailSender.send(mailMessage);
+        //return "Mail Sent Successfully...";
+    }*/
+    public void forgotpass(String emailuser) {
+
+    User d = userRepo.findByEmail(emailuser);
+        SimpleMailMessage mailMessage
+                = new SimpleMailMessage();
+        mailMessage.setFrom(sender);
+        mailMessage.setTo(emailuser);
+        mailMessage.setText("This a non reply message from malak\n " + "Dear Client \n"
+                + "Please follow the following link to reset your password: \n" + "http://localhost:4200/update");
         mailMessage.setSubject("password reset");
         javaMailSender.send(mailMessage);
         //return "Mail Sent Successfully...";

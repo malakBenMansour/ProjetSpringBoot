@@ -59,6 +59,10 @@ public class User implements Serializable {
 
     private String tel;
 
+
+    @Column(columnDefinition = "longtext")
+    private String image;
+
     //private boolean connected;
 
     // association
@@ -87,4 +91,7 @@ public class User implements Serializable {
 
     }
 
+    public User(Long id) {
+        this.id = id;
+    }
 }

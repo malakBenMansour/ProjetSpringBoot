@@ -65,48 +65,45 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors()
-                .and()
-                .csrf().disable()
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/","/file/**","file/**",
-                		"/favicon.ico",
-                        "/**/*.json",
-                        "/**/*.xml",
-                        "/**/*.properties",
-                        "/**/*.woff2",
-                        "/**/*.woff",
-                        "/**/*.ttf",
-                        "/**/*.ttc",
-                        "/**/*.ico",
-                        "/**/*.bmp",
-                        "/**/*.png",
-                        "/**/*.gif",
-                        "/**/*.svg",
-                        "/**/*.jpg",
-                        "/**/*.jpeg",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js").permitAll()
+				.and()
+				.csrf().disable()
+				.authorizeRequests()
+				.antMatchers("/","/file/**","file/**",
+						"/favicon.ico",
+						"/**/*.json",
+						"/**/*.xml",
+						"/**/*.properties",
+						"/**/*.woff2",
+						"/**/*.woff",
+						"/**/*.ttf",
+						"/**/*.ttc",
+						"/**/*.ico",
+						"/**/*.bmp",
+						"/**/*.png",
+						"/**/*.gif",
+						"/**/*.svg",
+						"/**/*.jpg",
+						"/**/*.jpeg",
+						"/**/*.html",
+						"/**/*.css",
+						"/**/*.js"
+						).permitAll()
+				//.antMatchers(HttpMethod.POST, "/ajouter").authenticated()
 
-                .antMatchers("/**/api-auth/**","/**/user/**","/user/checkEmail","/user/allUsers","/api/auth/**","/user/**","/reclamation/**","/banques/**","/credit/**").permitAll()
+                .antMatchers("/**/api-auth/**","/**/user/**","/user/checkEmail","/user/allUsers","/api-auth/**","/user/**","/reclamation/**","/organisation/**","/role/**").permitAll()
 
 
-                .antMatchers("/**/api-auth/**","/**/user/**","/user/checkEmail","/user/allUsers","/api/auth/**","/user/**"
+                .antMatchers("/**/api-auth/**","/**/user/**","/user/checkEmail","/user/allUsers","/organisation/**","/api-auth/**","/user/**","/role/**","**/organisation/**","**/organisation/ajouter"
                 		).permitAll()
 
 
-                
 
-
-        .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+				.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
 
                 .anyRequest().authenticated();
 
-        
+
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
     }
 }

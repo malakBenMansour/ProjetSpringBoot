@@ -13,7 +13,9 @@ public interface OrganisationService {
 
     List<Organisation> getOrganisations();
     // service avancé
-    public Organisation addUserToOrganisation(Organisation organisation, Long iduser);
+    public Organisation addUserToOrganisation( Organisation organisation,Long iduser);
     List<Organisation> findAllByAdresse(String adresse);
     List<Organisation> findAllByTypeorganisation(TypeOrganisation type);
+    public Organisation findById(Long id);
+    public Organisation findOrgById(Long id);
 }
