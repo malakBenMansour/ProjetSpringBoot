@@ -26,10 +26,14 @@ public class Blog implements Serializable {
     private String description ;
     @Enumerated(EnumType.STRING)
     private Typeblog Typeblog ;
+
+
     private String image ;
     @OneToMany(mappedBy = "blog")
     @JsonIgnore
     private Set<Articles> article = new HashSet<>() ;
+
+
 
 
 }
