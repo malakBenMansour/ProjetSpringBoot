@@ -11,5 +11,5 @@ public interface RoleService {
     void deleteRole(Long id);
 
     List<Role> getRoles();
-
+    public Role findID(Long id);
 }
