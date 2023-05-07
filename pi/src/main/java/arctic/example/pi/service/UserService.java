@@ -5,7 +5,6 @@ import arctic.example.pi.entity.ERole;
 import arctic.example.pi.entity.User;
 
 import java.io.ByteArrayInputStream;
-import java.util.Date;
 import java.util.List;
 
 public interface UserService {
@@ -24,17 +23,9 @@ public interface UserService {
     User activateUser(User user);
     List<User> retrieveUserByState(boolean stateUser);
     List<User> retrieveUserByAddress(String adressUser);
-    void updatePassword(String emailUser, String newPassword);
+    void updatePassword(String emailUser, String newPassword, String confirmPassword);
     List<User> findAllByOrderBOrderByRolesDesc();
     List<CountType> statistque();
     public  ByteArrayInputStream userExport(List<User> users);
     public void forgotpass(String emailuser);
-    User addOrganisationToUser(String username, Long id);
-    User desactivateUser(User user1);
-    public List<User> searchh(String s);
-    public boolean ifEmailExist(String email);
-    public     List<CountType> statistqueAge();
-    public List<User> getdisable();
-    public User findById(Long id) ;
-    public List<CountType> statistque1();
 }
