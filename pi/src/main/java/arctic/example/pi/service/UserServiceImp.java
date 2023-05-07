@@ -2,50 +2,38 @@ package arctic.example.pi.service;
 
 import arctic.example.pi.DTO.CountType;
 import arctic.example.pi.entity.ERole;
-import arctic.example.pi.entity.Organisation;
 import arctic.example.pi.entity.Role;
 import arctic.example.pi.entity.User;
-import arctic.example.pi.repository.OrganisationRepository;
 import arctic.example.pi.repository.RoleRepository;
 import arctic.example.pi.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.io.ByteArrayInputStream;
-import java.util.Date;
 import java.util.List;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import org.springframework.beans.factory.annotation.Value;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.ByteArrayOutputStream;
 
-import java.util.stream.Collectors;
+import java.util.Properties;
 import java.util.stream.Stream;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class UserServiceImp implements UserService{
-    @Value("${spring.mail.username}")
-    private String sender;
-    private final JavaMailSender javaMailSender;
-
-    public UserServiceImp(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
-    }
     @Autowired
     UserRepository userRepo;
 @Autowired
     RoleRepository roleRepo;
-@Autowired
-    OrganisationRepository organisationRepository;
 
     @Override
     public List<User> getUsers() {
@@ -58,7 +46,6 @@ public class UserServiceImp implements UserService{
        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-        user.setStateuser(true);
 
         return userRepo.save(user);
     }
@@ -69,24 +56,11 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepo.findById(id).orElse(null);
-    }
-
-    @Override
     public User updateUser(User user) {
-        User updateUser = userRepo.findById(user.getId()).get();
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
-        updateUser.setPassword(hashedPassword);
-        updateUser.setName(user.getName());
-        updateUser.setPrenom(user.getPrenom());
-        updateUser.setTel(user.getTel());
-        updateUser.setAddress(user.getAddress());
-        updateUser.setUsername(user.getUsername());
-        updateUser.setDatenaissance(user.getDatenaissance());
-        updateUser.setEmail(user.getEmail());
-        return userRepo.save(updateUser);
+        user.setPassword(hashedPassword);
+        return userRepo.save(user);
     }
 //service avancés
     @Override
@@ -97,16 +71,6 @@ public class UserServiceImp implements UserService{
             Role role = roleRepo.findByName(roleName);
             user.getRoles().add(role);
             return userRepo.save((user));
-
-    }
-    @Override
-    public User addOrganisationToUser(String username, Long id) {
-
-
-        User user = userRepo.findByUsername(username);
-        Organisation organisation = organisationRepository.findById(id).get();
-        user.setOrganisation(organisation);
-        return userRepo.save(user);
 
     }
   // recherche
@@ -137,45 +101,27 @@ public class UserServiceImp implements UserService{
         {
             user.setStateuser(true);
         }
-        else if(user.isStateuser()==true)
-        {
-            user.setStateuser(false);
-        }
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
         user.setEmail(user1.getEmail());
-        user.setName(user1.getName());
+        user.setNom(user1.getNom());
         user.setPrenom(user1.getPrenom());
         user.setDatenaissance(user1.getDatenaissance());
         user.setTel(user1.getTel());
         user.setAddress(user1.getAddress());
         return userRepo.save(user);
     }
-    @Override
-    public User desactivateUser(User user1)
-    { User user=userRepo.findByUsername(user1.getUsername());
-        if(user.isStateuser()==true)
-        {
-            user.setStateuser(false);
-        }
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
-        user.setEmail(user1.getEmail());
-        user.setName(user1.getName());
-        user.setPrenom(user1.getPrenom());
-        user.setDatenaissance(user1.getDatenaissance());
-        user.setTel(user1.getTel());
-        user.setAddress(user1.getAddress());
-        return userRepo.save(user);
-    }
+
     // update password
-    public void updatePassword(String emailUser, String newPassword) {
+    public void updatePassword(String emailUser, String newPassword, String confirmPassword) {
        User u = userRepo.findByEmail(emailUser);
       BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(newPassword);
+        String encodedConfirmPassword = passwordEncoder.encode(confirmPassword);
         u.setPassword(encodedPassword);
+        u.setConfirmpassworduser(encodedConfirmPassword);
+
         userRepo.save(u);
     }
     public List<User>  findAllByOrderBOrderByRolesDesc()
@@ -183,31 +129,13 @@ public class UserServiceImp implements UserService{
         return userRepo.findAllByOrderByRolesDesc();
     }
 
-
-    // stats nbre of users actives or desactive
    public List<CountType> statistque()
    {
        return userRepo.statistque();
    }
-
-
-
-    public List<CountType> statistque1()
-    {
-        return userRepo.adresse();
-    }
-
-
-   // stats nbre of max age
-   public  List<CountType> statistqueAge()
-   {
-       return userRepo.minmaxeage();
-   }
-
 // export pdf
 public  ByteArrayInputStream userExport(List<User> users) {
    Document document = new Document();
-
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     try {
         PdfWriter.getInstance(document, out);
@@ -231,7 +159,7 @@ public  ByteArrayInputStream userExport(List<User> users) {
         });
 
         for (User user : users) {
-            PdfPCell NomCell = new PdfPCell(new Phrase(user.getName()));
+            PdfPCell NomCell = new PdfPCell(new Phrase(user.getNom()));
             NomCell.setPaddingLeft(1);
             NomCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             NomCell.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -272,56 +200,44 @@ public  ByteArrayInputStream userExport(List<User> users) {
 }
 
 // forget password mailing
-
-/*public void forgotpass(String emailuser) {
-
+public void forgotpass(String emailuser) {
+    // TODO Auto-generated method stub
     User d = userRepo.findByEmail(emailuser);
-        SimpleMailMessage mailMessage
-                = new SimpleMailMessage();
-        mailMessage.setFrom(sender);
-        mailMessage.setTo(emailuser);
-        mailMessage.setText("This a non reply message from malak\n " + "Dear Client \n"
-                + "Please follow the following link to reset your password: \n" + "http://localhost:8090/user/updatepassword");
-        mailMessage.setSubject("password reset");
-        javaMailSender.send(mailMessage);
-        //return "Mail Sent Successfully...";
-    }*/
-    public void forgotpass(String emailuser) {
 
-    User d = userRepo.findByEmail(emailuser);
-        SimpleMailMessage mailMessage
-                = new SimpleMailMessage();
-        mailMessage.setFrom(sender);
-        mailMessage.setTo(emailuser);
-        mailMessage.setText("This a non reply message from malak\n " + "Dear Client \n"
-                + "Please follow the following link to reset your password: \n" + "http://localhost:4200/update");
-        mailMessage.setSubject("password reset");
-        javaMailSender.send(mailMessage);
-        //return "Mail Sent Successfully...";
+    final String username = "benmansourmalak18@gmail.com";
+    final String password = "malak2001";
+
+    Properties prop = new Properties();
+    prop.put("mail.smtp.host", "smtp.gmail.com");
+    prop.put("mail.smtp.port", "587");
+    prop.put("mail.smtp.auth", "true");
+    prop.put("mail.smtp.starttls.enable", "true"); // TLS
+    prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+    Session session = Session.getInstance(prop, new javax.mail.Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication("benmansourmalak18@gmail.com", "malak2001");
+        }
+    });
+
+    try {
+
+        Message message;
+        message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("benmansourmalak18@gmail.com"));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailuser));
+        message.setSubject("Reset Your Password");
+        message.setText("This a non reply message from malak\n " + "Dear Client \n"
+                + "Please follow the following link to reser your password: \n" + "http://localhost:8090/user/modifUser");
+
+        Transport.send(message);
+
+        //log.info("Done");
+
+    } catch (MessagingException e) {
+        e.printStackTrace();
     }
-
-
-
-    public boolean ifEmailExist(String email) {
-        return userRepo.existsByEmail(email);
-    }
-/// recherche stream
-    @Override
-public List<User> searchh(String s) {
-
-    return userRepo.findAll().stream().filter(user -> user.getName()!=null )
-            .filter(user -> user.getName().contains(s)  ).collect(Collectors.toList());
-
 
 }
 
-// scheduler
-
-   // @Scheduled(fixedRate = 5000)
-   @Scheduled(cron = "0 0 8 * * MON")
-    public List<User> getdisable()
-    {
-
-        return userRepo.getusersdisable();
-    }
 }
